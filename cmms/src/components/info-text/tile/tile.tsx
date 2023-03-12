@@ -1,14 +1,14 @@
 import { useState } from "react";
-import { BussinesDetails } from "../../../api-service/mock-bussines";
+import { Bussines } from "../../../api-service/mock-bussines";
 import { Icon } from "../../icon";
 import { InfoText } from "../info-text";
 
 interface Props {
-  bussinesDetails: BussinesDetails;
+  bussines: Bussines;
 }
 
-export const Tile = ({ bussinesDetails }: Props) => {
-  const { id, name, imageSrc, rating, info, price } = bussinesDetails;
+export const Tile = ({ bussines }: Props) => {
+  const { id, name, image_url, rating, categories, price, location } = bussines;
   const [isFavorite, setisFavorite] = useState(false);
 
   return (
@@ -25,26 +25,34 @@ export const Tile = ({ bussinesDetails }: Props) => {
         </button>
 
         <img
-          src={imageSrc}
+          src={image_url}
           alt={"${name} image"}
           className="w-full h-full object-bottom object-cover rounded-md"
         />
       </div>
       <div className="flex flex-col">
         <header className="flex justify-between items-center">
-          <h6 className="font-semibold">{name}</h6>
+          <div className="flex gap-2 items-center">
+            <h6 className="font-semibold">{name}</h6>
+            <InfoText>{price}</InfoText>
+          </div>
           <div className="flex gap-1 items-center">
             <Icon icon="StarSolid" className="w-3" />
             <span className="text-sm">{rating}</span>
           </div>
         </header>
-        {info.map((item, i) => (
-          <InfoText key={i}>{item}</InfoText>
-        ))}
-
         <InfoText>
-          {price.value}
-          {price.currency}
+          {categories.map((category, i) => (
+            <span key={category.alias}>
+              {category.title}
+              {i + 1 < categories.length && ", "}
+            </span>
+          ))}
+        </InfoText>
+        <InfoText>
+          <strong>
+            {location.address1}, {location.city}
+          </strong>
         </InfoText>
       </div>
     </div>

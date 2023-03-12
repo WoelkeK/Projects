@@ -1,37 +1,69 @@
 
 
-export interface BussinesDetails{
-    id: number
-    name: string;
-    imageSrc: string;
-    info: [string, string];
-    rating: string;
-    price: {
-        value: number;
-        currency: string;
-    };
-}
-
-export const mockApiResponse: BussinesDetails[] = [
-    {       id: 1,
-            imageSrc:"https://placeimg.com/640/480/any",
-            name:"Super biznes",
-            info:['kup tu', 'nie tam'],
-            rating:"4.4",
-            price:{value: 12.44, currency: "PLN"},
-  },
-  {       id: 2,
-          imageSrc:"https://placeimg.com/640/480/any",
-          name:"Żabka",
-          info:['kup tu', 'taniej nie będzie'],
-          rating:"4.4",
-          price:{value: 111.14, currency: "PLN"},
-  },
-  {       id: 3,
-          imageSrc:"https://placeimg.com/640/480/any",
-          name:"Bierdornka",
-          info:['kup tu', 'dostaniesz rabat'],
-          rating:"4.1",
-          price:{value: 78.21, currency: "PLN"},
+export interface Bussines
+{
+    rating: number
+    price: string
+    phone: string
+    id: string
+    categories: Category[]
+    review_count: number
+    name: string
+    url: string
+    coordinates: Coordinates
+    image_url: string
+    location: Location
   }
+  
+  export interface Category {
+    alias: string
+    title: string
+  }
+  
+  export interface Coordinates {
+    latitude: number
+    longitude: number
+  }
+  
+  export interface Location {
+    city: string
+    country: string
+    address2: string
+    address3: string
+    state: string
+    address1: string
+    zip_code: string
+  }
+
+export const mockApiResponse: Bussines[] = [
+    {
+        "rating": 4.5,
+        "price": "$$",
+        "phone": "+14154212337",
+        "id": "molinari-delicatessen-san-francisco",
+        "categories": [
+          {
+            "alias": "delis",
+            "title": "Delis"
+          }
+        ],
+        "review_count": 910,
+        "name": "Molinari Delicatessen",
+        "url": "https://www.yelp.com/biz/molinari-delicatessen-san-francisco",
+        "coordinates": {
+          "latitude": 37.7983818054199,
+          "longitude": -122.407821655273
+        },
+        "image_url": "http://s3-media4.fl.yelpcdn.com/bphoto/6He-NlZrAv2mDV-yg6jW3g/o.jpg",
+        "location": {
+          "city": "San Francisco",
+          "country": "US",
+          "address2": "",
+          "address3": "",
+          "state": "CA",
+          "address1": "373 Columbus Ave",
+          "zip_code": "94133"
+        }
+    }
+  
   ]
