@@ -2,7 +2,7 @@ import { createElement, HTMLAttributes, Suspense, useMemo } from "react";
 import { icons } from "./icons";
 import { clsx } from "clsx";
 
-type IconName = keyof typeof icons;
+export type IconName = keyof typeof icons;
 
 interface Props extends HTMLAttributes<HTMLDivElement> {
   icon: IconName;
